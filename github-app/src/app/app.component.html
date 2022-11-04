@@ -1,0 +1,41 @@
+<main class="container">
+  <section class="search">
+    <img src="/assets/github.svg" alt="Github">
+    <form action="#" id="search-form" [formGroup]="githubForm" (ngSubmit)="procurar()">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput placeholder="Ex: frogs123" formControlName="username">
+      </mat-form-field>
+      <button mat-flat-button color="accent" matTooltip="Procurar Usuário" [disabled]="githubForm.invalid">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+  </section>
+
+  <mat-card *ngIf="gUser != undefined" class="card">
+      <mat-card-title-group>
+        <mat-card-title>{{ gUser.name }}</mat-card-title>
+        <mat-card-subtitle>{{ gUser.html_url }}</mat-card-subtitle>
+        <img mat-card-sm-image [src]="gUser.avatar_url" >
+      </mat-card-title-group>
+      <mat-card-content>
+        {{ gUser.bio }}
+      </mat-card-content>
+    </mat-card>
+</main>
+
+<div class="repo" *ngIf="gUserRepo!=undefined">
+  <h2>Repositórios</h2>
+  <div class="grid" >
+    <ng-container *ngFor="let repo of gUserRepo">
+      <div class="grid-item">{{repo.name}}</div>
+      <div class="grid-item">id: {{repo.id}}</div>
+      <div class="grid-item">language: {{repo.language}}</div>
+    </ng-container>
+  </div>
+</div>
+    
+
+    
+
+  
