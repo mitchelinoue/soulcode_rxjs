@@ -1,0 +1,39 @@
+<main class="container">
+  <section class="search">
+    <img src="/assets/2560px-Correios_(1990).svg.png" width="300" alt="correios">
+    <form action="#" id="search-form" [formGroup]="cepForm" (ngSubmit)="procurarCep()">
+      <mat-form-field appearance="outline">
+        <mat-label>CEP</mat-label>
+        <input type="text" matInput placeholder="Ex: 00000-000" formControlName="cep">
+      </mat-form-field>
+      <button mat-flat-button color="accent" matTooltip="Procurar Usuário">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+  </section>
+
+
+  <div class="repo" *ngIf="cepUser!=undefined">
+    <h2>Informações</h2>
+    <div class="grid" >
+      
+        <div class="grid-item">CEP: {{cepUser.cep}}</div>
+        <div class="grid-item">Logradouro: {{cepUser.logradouro}}</div>
+        <div class="grid-item">Complemento: {{cepUser.complemento}}</div>
+        <div class="grid-item">Bairro: {{cepUser.bairro}}</div>
+        <div class="grid-item">Localidade: {{cepUser.localidade}}</div>
+        <div class="grid-item">UF: {{cepUser.uf}}</div>
+        <div class="grid-item">IBGE: {{cepUser.ibge}}</div>
+        <div class="grid-item">DDD: {{cepUser.ddd}}</div>
+        <div class="grid-item">Siafi: {{cepUser.siafi}}</div>
+        
+      
+    </div>
+  </div>
+      
+</main>
+
+
+    
+
+    
