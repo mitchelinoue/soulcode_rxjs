@@ -1,0 +1,44 @@
+<main class="container">
+  <section class="search">
+    <img src="" width="300" alt="">
+    <form action="#" id="search-form" [formGroup]="filmeForm" (ngSubmit)="search()">
+      <mat-form-field appearance="outline">
+        <mat-label>Filme</mat-label>
+        <input type="text" matInput placeholder="Ex: Senhor dos anéis" formControlName="filme">
+      </mat-form-field>
+      <button mat-flat-button color="accent" matTooltip="Procurar Filme">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+  </section>
+
+
+  <div *ngFor="let item of fLilet itemst, let i = index">
+    <div class="repo" *ngIf="fList!=undefined">
+      <h2>Informações Filme {{i+1}}</h2>
+      <div class="grid" >
+    
+          <div class="grid-item">{{item.title}}</div>
+          <div class="grid-item">{{item.overview}}</div>
+          <div class="grid-item">
+            <img mat-card-image src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{item.poster_path}}" alt="">
+          </div>
+    
+    
+      </div>
+    </div>
+  </div>
+      
+</main>
+
+<div class="size" *ngIf="fList.length == 0">
+  <mat-card class="card" *ngFor="let item of list">
+    <mat-card-header>
+      <mat-card-title>{{ item.title }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}" alt="">
+    <mat-card-content>
+      <p>{{ item.overview }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
