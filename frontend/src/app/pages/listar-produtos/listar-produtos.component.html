@@ -1,14 +1,26 @@
-
-<div *ngFor="let item of pList">
-    <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>{{item.nome}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="{{item.foto}}" alt="" *ngIf=" item.foto != '' ">
-        <img mat-card-image src="https://igp.rs.gov.br/themes/modelo-noticias/images/outros/GD_imgSemImagem.png" alt="" *ngIf=" item.foto == '' ">
-        <mat-card-content>
-          <p>{{item.descricao}}</p>  
-          <p>{{item.preco}}</p>
-        </mat-card-content>
+<main class="container">
+    <mat-card *ngFor="let prod of pList, let i = index">
+      <img [src]="prod.foto || altImg" [alt]="prod.nome" mat-card-image>
+      <mat-card-subtitle>{{ prod.nome }}</mat-card-subtitle>
+      <mat-card-content>
+        <p class="preco">
+          <strong>{{ prod.preco | currency:'BRL' }}</strong>
+        </p>
+        <p class="desc">
+          {{ prod.descricao }}
+        </p>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <a [routerLink]="'/produtos/' + prod.id" mat-stroked-button color="primary" matTooltip="Editar Produto">
+          <mat-icon>edit</mat-icon>
+      </a>
+        <button mat-stroked-button color="warn"matTooltip="Deletar Produto">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
     </mat-card>
-</div>
+    <button [routerLink]="'/novo/'" mat-mini-fab color="accent" id="go-form" matTooltip="Adicionar Produto" matTooltipPosition="left">
+      <mat-icon>add</mat-icon>
+    </button>
+  </main>
