@@ -5,6 +5,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ListarProdutosComponent } from "./pages/listar-produtos/listar-produtos.component";
 import { NovoProdutoComponent } from "./pages/novo-produto/novo-produto.component";
+import { ProdutoInvalidoComponent } from "./pages/produto-invalido/produto-invalido.component";
 import { ProdutoComponent } from "./pages/produto/produto.component";
 
 //rota é igual um componente
@@ -20,14 +21,19 @@ const rotas: Routes = [ // cada objeto é uma rota
         path: 'produtos',
         component: ListarProdutosComponent
     },
+   
+    {
+        path: 'produtos/novo',
+        component: NovoProdutoComponent
+    },
+    {
+        path: 'produtos/invalido',
+        component: ProdutoInvalidoComponent
+    },
     {
         path: 'produtos/:idProduto', // rota com parâmetro idProduto
         component: ProdutoComponent
     },
-    {
-        path: 'novo',
-        component: NovoProdutoComponent
-    }
 ]
 
 @NgModule({

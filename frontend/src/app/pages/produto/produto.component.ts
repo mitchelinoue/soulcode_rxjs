@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Produto } from 'src/app/models/Produto';
 import { ProdutosApiService } from 'src/app/services/produtos-api.service';
 
@@ -30,7 +30,9 @@ export class ProdutoComponent implements OnInit {
   constructor(
     private rota: ActivatedRoute, // ActivatedRoute permite acessar as informações (parâmetros) da rota que está ativa no momento
     private produtosService: ProdutosApiService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
+    
   ) { }
 
   ngOnInit(): void { // é executado quando o componente é renderizado
@@ -55,6 +57,7 @@ export class ProdutoComponent implements OnInit {
         if(erro instanceof HttpErrorResponse){
           if(erro.status == 404){
             this.snackBar.open(' 404 O produto procurado não existe :( ', 'ok')
+            this.router.navigate(['/produtos/invalido']);
           }
         }
       }

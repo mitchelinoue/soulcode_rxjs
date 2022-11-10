@@ -1,5 +1,5 @@
 export interface Produto {
-    id: number
+    id?: number  // com o ? o campo id se torna opcional
     nome: string
     preco: string
     descricao: string

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Produto } from 'src/app/models/Produto';
+import { ProdutosApiService } from 'src/app/services/produtos-api.service';
 
 @Component({
   selector: 'app-novo-produto',
@@ -16,9 +17,21 @@ export class NovoProdutoComponent implements OnInit {
     preco: new FormControl('', [ Validators.required ])
   })
 
-  constructor() { }
+  constructor(
+    private produtoService: ProdutosApiService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  salvarProduto(){
+    const produto: Produto = this.produtoForm.value
+
+    this.produtoService.criarProduto(produto).subscribe(
+      (prod) => {
+        console.log(prod)
+        alert('Produto salvo com sucesso') // desafio subsyituir por snackbar
+      }
+    )
+  }
 }

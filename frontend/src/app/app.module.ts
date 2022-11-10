@@ -11,6 +11,7 @@ import { ProdutoComponent } from './pages/produto/produto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NovoProdutoComponent } from './pages/novo-produto/novo-produto.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProdutoInvalidoComponent } from './pages/produto-invalido/produto-invalido.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppComponent,
     ListarProdutosComponent,
     ProdutoComponent,
-    NovoProdutoComponent
+    NovoProdutoComponent,
+    ProdutoInvalidoComponent
   ],
   imports: [
     BrowserModule,

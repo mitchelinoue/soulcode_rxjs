@@ -24,4 +24,9 @@ export class ProdutosApiService {
   pegarProduto(idProduto: string | null){
     return this.http.get<Produto>(this.baseURL + '/' + idProduto)
   }
+
+  criarProduto(prod: Produto){
+    return this.http.post<Produto>(this.baseURL, prod)
+
+  }
 }

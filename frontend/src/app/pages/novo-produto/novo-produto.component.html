@@ -4,7 +4,7 @@
       <mat-card-title>Dados do Novo Produto</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form action="#" [formGroup]="produtoForm" >
+      <form action="#" [formGroup]="produtoForm" (ngSubmit)="salvarProduto()">
 
         <mat-form-field appearance="fill">
           <mat-label>Nome</mat-label>
