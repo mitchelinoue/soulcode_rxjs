@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Produto } from 'src/app/models/Produto';
 import { ProdutosApiService } from 'src/app/services/produtos-api.service';
+import { ListarProdutosComponent } from '../listar-produtos/listar-produtos.component';
 
 @Component({
   selector: 'app-produto',
@@ -39,9 +40,9 @@ export class ProdutoComponent implements OnInit {
 
     // paraMap é um objeto que possui acesso a todos os parâmetros da rota atual
     //get funciona para pegar o valor de um parâmetro de uma rota atual
-    const idProduto = this.rota.snapshot.paramMap.get('idProduto')
+    const idProduto = this.rota.snapshot.paramMap.get('idProduto') as string
 
-    this.produtosService.pegarProduto(idProduto).subscribe(
+    this.produtosService.pegarProduto(parseInt(idProduto)).subscribe(
       (prod) => {
         console.log(prod)
         this.produto = prod
@@ -57,15 +58,26 @@ export class ProdutoComponent implements OnInit {
         if(erro instanceof HttpErrorResponse){
           if(erro.status == 404){
             this.snackBar.open(' 404 O produto procurado não existe :( ', 'ok')
-            this.router.navigate(['/produtos/invalido']);
+            this.router.navigateByUrl('/produtos/invalido');
           }
         }
       }
     )
   }
 
-  public atualizar(){
-    console.log(this.produtoForm.value)
+  public atualizar(id:number | undefined){
     this.produto = this.produtoForm.value
+    this.produtosService.atualizarProduto(this.produto, id).subscribe(
+      (prod) => {
+        prod = this.produto
+      }
+    )
+  }
+  deletar(){
+    this.produtosService.deletarProduto(this.produto.id as number).subscribe(
+      ()=>{
+        this.router.navigateByUrl('/produtos')
+      }
+    )
   }
 }

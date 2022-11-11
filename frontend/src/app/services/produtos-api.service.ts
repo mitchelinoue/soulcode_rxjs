@@ -21,12 +21,21 @@ export class ProdutosApiService {
 
   }
 
-  pegarProduto(idProduto: string | null){
+  pegarProduto(idProduto: number){
     return this.http.get<Produto>(this.baseURL + '/' + idProduto)
   }
 
   criarProduto(prod: Produto){
     return this.http.post<Produto>(this.baseURL, prod)
+  }
 
+  atualizarProduto(prod: Produto, idProduto: number | undefined){
+    return this.http.patch(this.baseURL + '/' + idProduto, prod)
+  }
+
+  deletarProduto(idProduto: number | undefined){
+    
+    return this.http.delete(`${this.baseURL}/${idProduto}`)
+    
   }
 }

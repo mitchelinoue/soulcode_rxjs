@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Produto } from 'src/app/models/Produto';
 import { ProdutosApiService } from 'src/app/services/produtos-api.service';
 
@@ -13,6 +15,8 @@ export class ListarProdutosComponent implements OnInit {
 
   constructor(
     private produtosService: ProdutosApiService,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit():void { // é chamado quando o componente foi colocado na tela (renderizado)
@@ -22,4 +26,13 @@ export class ListarProdutosComponent implements OnInit {
       }
     )
   }
+
+  deletar(id: number | undefined){
+    this.produtosService.deletarProduto(id).subscribe(
+      ()=>{
+        window.location.reload();
+      }
+    )
+  }
+
 }

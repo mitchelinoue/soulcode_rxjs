@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Produto } from 'src/app/models/Produto';
 import { ProdutosApiService } from 'src/app/services/produtos-api.service';
 
@@ -18,7 +20,9 @@ export class NovoProdutoComponent implements OnInit {
   })
 
   constructor(
-    private produtoService: ProdutosApiService
+    private produtoService: ProdutosApiService,
+    private sanackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,8 +34,12 @@ export class NovoProdutoComponent implements OnInit {
     this.produtoService.criarProduto(produto).subscribe(
       (prod) => {
         console.log(prod)
-        alert('Produto salvo com sucesso') // desafio subsyituir por snackbar
+        this.sanackBar.open('Produto salvo com sucesso', 'ok!')
       }
     )
+
+    setTimeout(() => {
+      this.router.navigateByUrl('/produtos');
+    }, 1000)
   }
 }
