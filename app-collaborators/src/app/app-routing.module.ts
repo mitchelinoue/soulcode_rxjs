@@ -5,6 +5,7 @@ import { CadastrarUsuarioComponent } from './view/cadastrar-usuario/cadastrar-us
 import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component'
+import { NewCollaboratorComponent } from './view/new-collaborator/new-collaborator.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,12 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [ AuthGuard ],
     title: "Painel de Controle | Collaborators"
+  },
+  {
+    path: 'dashboard/new',
+    component: NewCollaboratorComponent,
+    canActivate: [ AuthGuard ],
+    title: "Novo colaborador | Collaborators"
   }
 ];
 
