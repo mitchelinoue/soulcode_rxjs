@@ -6,6 +6,7 @@ import { HomeComponent } from './view/home/home.component';
 import { LoginComponent } from './view/login/login.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component'
 import { NewCollaboratorComponent } from './view/new-collaborator/new-collaborator.component';
+import { EditCollaboratorComponent } from './view/edit-collaborator/edit-collaborator.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,12 @@ const routes: Routes = [
     component: NewCollaboratorComponent,
     canActivate: [ AuthGuard ],
     title: "Novo colaborador | Collaborators"
+  },
+  {
+    path: 'dashboard/edit/:id',
+    component: EditCollaboratorComponent,
+    canActivate: [ AuthGuard ],
+    title: "Editar colaborador | Collaborators"
   }
 ];
 

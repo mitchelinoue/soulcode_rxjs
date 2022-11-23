@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Collaborator } from 'src/app/models/collaborator';
+import { CollaboratorService } from 'src/app/services/collaborator.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,24 +11,29 @@ import { Collaborator } from 'src/app/models/collaborator';
 export class DashboardComponent implements OnInit {
 
   displayedColumns = ['foto', 'nome', 'email', 'cpf', 'cargo', 'setor', 'excluir', 'editar', 'detalhes'];
-  dataSource: Collaborator[] = [
-    {
-      nome: "Mitchel Inoue",
-      email: "mitchel@mail.com",
-      cpf: "123.456.789-10",
-      cargo: "Engenheiro Civil",
-      setor: "Obras",
-      estado: "SP",
-      cidade: "São Paulo",
-      remuneracao: 100000,
-      dataNascimento: new Date(),
-      fotoUrl: "https://avatars.githubusercontent.com/u/107430805?v=4"
-    }
-  ];
+  dataSource: Collaborator[] = [];
 
-  constructor() { }
+  constructor(
+    private collaboratorService: CollaboratorService,
+    private notification: NotificationService,
+    ) { }
 
   ngOnInit(): void {
+    this.initializeTable();
+  }
+
+  private initializeTable():void{
+    // capturar os dados do firestore e preencher o vetor de colaboradores
+    this.collaboratorService.findAll().subscribe(collaborators=>{
+      this.dataSource = collaborators;
+    });
+  }
+
+  public deleteCollaborator(id: string): void{
+    this.collaboratorService.deleteCollaborator(id).subscribe(response =>{
+      this.notification.showMessage("Apagado");
+      this.initializeTable();
+    })
   }
 
 }

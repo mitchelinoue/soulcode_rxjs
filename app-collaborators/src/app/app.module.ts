@@ -11,11 +11,13 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { LoginComponent } from './view/login/login.component';
 import { CadastrarUsuarioComponent } from './view/cadastrar-usuario/cadastrar-usuario.component';
 import { HomeComponent } from './view/home/home.component'
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { NewCollaboratorComponent } from './view/new-collaborator/new-collaborator.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
+import { EditCollaboratorComponent } from './view/edit-collaborator/edit-collaborator.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { NewCollaboratorComponent } from './view/new-collaborator/new-collaborat
     HomeComponent,
     HeaderComponent,
     DashboardComponent,
-    NewCollaboratorComponent
+    NewCollaboratorComponent,
+    EditCollaboratorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,10 @@ import { NewCollaboratorComponent } from './view/new-collaborator/new-collaborat
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     ReactiveFormsModule,
-    MaterialModule
+    FormsModule,
+    MaterialModule,
+    AngularFirestoreModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
