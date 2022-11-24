@@ -18,6 +18,9 @@ import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { NewCollaboratorComponent } from './view/new-collaborator/new-collaborator.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
 import { EditCollaboratorComponent } from './view/edit-collaborator/edit-collaborator.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { DetailsComponent } from './components/details/details.component';
+import { AvatarPipe } from './pipes/avatar.pipe';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { EditCollaboratorComponent } from './view/edit-collaborator/edit-collabo
     HeaderComponent,
     DashboardComponent,
     NewCollaboratorComponent,
-    EditCollaboratorComponent
+    EditCollaboratorComponent,
+    DetailsComponent,
+    AvatarPipe,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,7 @@ import { EditCollaboratorComponent } from './view/edit-collaborator/edit-collabo
     FormsModule,
     MaterialModule,
     AngularFirestoreModule,
-    
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

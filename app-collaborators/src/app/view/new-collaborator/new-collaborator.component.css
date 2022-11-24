@@ -32,6 +32,18 @@
       background-color: #aa4747;
 }
 
+.upload-foto {
+      width: 100%;
+      padding: 5px 20px;
+      border: 1px solid #bababa;
+      border-radius: 5px;
+      cursor: pointer;
+}
+
+.upload-foto::-webkit-file-upload-button{
+      display: none;
+}
+
 
 
 

@@ -4,6 +4,7 @@ import { Collaborator } from '../models/collaborator';
 import { EMPTY, from, Observable } from 'rxjs';
 import { NotificationService } from './notification.service';
 import { catchError, map } from 'rxjs/operators';
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 @Injectable({
   providedIn: 'root'
@@ -66,8 +67,13 @@ export class CollaboratorService {
     )
   }
 
-  public deleteCollaborator(id: string){
+  public deleteCollaborator(id: string, fotoName: string){
     const promise = this.firestore.collection("collaborators").doc(id).delete();
+    const storage = getStorage();
+
+    const foto = ref(storage, fotoName);
+    deleteObject(foto);
+
     return from(promise).pipe(
       catchError(error => {
         this.notification.showMessage("Erro ao excluir");
