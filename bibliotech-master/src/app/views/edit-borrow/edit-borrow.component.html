@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="container">
+      <h1>Editar Empréstimo</h1>
+      <form #formEdit="ngForm">
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Leitor</mat-label>
+                  <input type="text" matInput placeholder="Leitor" name="leitor" [(ngModel)]="borrow.leitor" required>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>E-mail</mat-label>
+                  <input type="text" matInput placeholder="E-mail" name="email" [(ngModel)]="borrow.email" required>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Telefone</mat-label>
+                  <input type="text" matInput placeholder="Telefone" name="telefone" [(ngModel)]="borrow.telefone" required>
+            </mat-form-field>  
+      
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Status</mat-label>
+                  <mat-select name="status" [(ngModel)]="borrow.status" required>
+                        <mat-option value="pendente">Pendente</mat-option>
+                        <mat-option value="devolvido">Devolvido</mat-option>
+                  </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Livro</mat-label>
+                  <mat-select name="a" [(ngModel)]="borrow.livro" >
+                        <mat-option *ngFor="let book of books" [value]="book">
+                          {{book.titulo}}
+                        </mat-option>
+                  </mat-select>
+            </mat-form-field>
+
+            <div class="double-width">
+                  <a class="full-width btn" mat-raised-button routerLink="/dashboard">Voltar</a>
+                  <a class="full-width btn-submit" mat-raised-button (click)="updateBorrow(formEdit)">Editar</a>
+            </div>
+            
+      </form>
+</div>

@@ -1,0 +1,26 @@
+mat-toolbar{
+    height: 10vh;
+      background-color: #69B2F4;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      top: 0;
+  }
+  
+  #logout{
+      display: flex;
+      align-items: center;
+      margin: 0;
+  }
+  
+  #logout i{
+      margin-left: 10px;
+  }
+
+  span{
+    font-size: xx-large;
+    margin-left: 20px;
+  }
+
+

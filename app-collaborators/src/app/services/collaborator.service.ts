@@ -69,14 +69,21 @@ export class CollaboratorService {
 
   public deleteCollaborator(id: string, fotoName: string){
     const promise = this.firestore.collection("collaborators").doc(id).delete();
-    const storage = getStorage();
 
+    const storage = getStorage();
     const foto = ref(storage, fotoName);
-    deleteObject(foto);
+    console.log(foto)
+    console.log(storage)
+    deleteObject(foto).then(() => {
+      this.notification.showMessage("Excluido com sucesso");
+    }).catch((error) => {
+      console.log(error)
+      this.notification.showMessage("Erro ao excluir foto");
+    })
 
     return from(promise).pipe(
       catchError(error => {
-        this.notification.showMessage("Erro ao excluir");
+        this.notification.showMessage("Erro ao excluir dados colaborador");
         console.log(error);
         return EMPTY;
       })

@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="container">
+      <h1>Novo Empréstimo</h1>
+      <form [formGroup]="formBorrow">
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Leitor</mat-label>
+                  <input type="text" matInput placeholder="Leitor" formControlName="leitor">
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>E-mail</mat-label>
+                  <input type="text" matInput placeholder="E-mail" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Telefone</mat-label>
+                  <input type="text" matInput placeholder="Telefone" formControlName="telefone">
+            </mat-form-field>  
+      
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Status</mat-label>
+                  <mat-select matNativeControl formControlName="status">
+                        <mat-option value="pendente">Pendente</mat-option>
+                        <mat-option value="devolvido">Devolvido</mat-option>
+                  </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Livro</mat-label>
+                  <mat-select formControlName="livro">
+                        <mat-option *ngFor="let book of books" [value]="book">
+                          {{book.titulo}}
+                        </mat-option>
+                  </mat-select>
+            </mat-form-field>
+
+            <div class="double-width">
+                  <a class="full-width btn" mat-raised-button routerLink="/dashboard">Voltar</a>
+                  <a class="full-width btn-submit" mat-raised-button (click)="newBorrow()">Emprestar</a>
+            </div>
+      </form>
+</div>
+

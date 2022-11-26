@@ -10,12 +10,12 @@ import { NotificationService } from '../services/notification.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
+   constructor(
     private firebaseAuth: AngularFireAuth,
     private router: Router,
-    private notification: NotificationService
-    ){ }
-
+    private notification: NotificationService,
+  ){}
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -35,3 +35,4 @@ export class AuthGuard implements CanActivate {
   }
   
 }
+
