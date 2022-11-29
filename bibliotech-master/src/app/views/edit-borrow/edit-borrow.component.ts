@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EMPTY } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { Borrow } from 'src/app/models/borrow';
 import { BookService } from 'src/app/services/book.service';
@@ -16,7 +17,9 @@ export class EditBorrowComponent implements OnInit {
 
   public borrow!: Borrow;
 
-  books: Book[] = [];
+  public bookC!: Book;
+
+  public books: Book[] = [];
 
   constructor(
     private notification: NotificationService,
@@ -47,6 +50,12 @@ export class EditBorrowComponent implements OnInit {
     } else {
       this.notification.showMessage("Dados inválidos");
     }
+  }
+
+  public updateBorrowBook(id: string | undefined){
+      this.bookService.findById(id).subscribe(book => {
+        this.borrow.livro = book;
+    })
   }
 
   public showBooks(){

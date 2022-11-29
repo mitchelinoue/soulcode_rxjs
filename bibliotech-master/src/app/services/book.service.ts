@@ -27,6 +27,23 @@ export class BookService {
     )
   }
 
+  public findById(id: string | undefined): Observable<any>{
+    const promise = this.firestore.collection("books").doc(id).get();
+
+    return from(promise).pipe(
+      map(doc =>{
+        const book: Book = doc.data() as Book;
+        book.id = doc.id;
+        return book;
+      }),
+      catchError(error => {
+        this.notification.showMessage("Erro ao buscar pelo id");
+        console.log(error);
+        return EMPTY;
+      })
+    )
+  }
+
   public findAll() {
     const promise = this.firestore.collection('books').get();
 
