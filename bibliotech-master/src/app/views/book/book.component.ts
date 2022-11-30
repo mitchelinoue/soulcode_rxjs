@@ -75,6 +75,7 @@ export class BookComponent implements OnInit {
 
   public deleteBook(id: string, coverName: string) {
     this.bookService.deleteBook(id, coverName).subscribe(response => {
+      this.notification.showMessage("Excluído com sucesso");
       this.loadTable();
     })
     }

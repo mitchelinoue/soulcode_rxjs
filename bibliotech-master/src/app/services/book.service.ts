@@ -63,7 +63,6 @@ export class BookService {
       })
     )
   }
-
   
   public deleteBook(id: string, coverName: string) {
     const promise = this.firestore.collection('books').doc(id).delete();
@@ -76,8 +75,6 @@ export class BookService {
       console.log(error)
       this.notification.showMessage("Erro ao excluir foto");
     })
-
-
 
     return from(promise).pipe(
       catchError(error => {

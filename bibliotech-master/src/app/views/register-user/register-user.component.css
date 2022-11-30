@@ -89,3 +89,7 @@
   .login-form button{
       font-size: 17px;
   }
+
+  button{
+    cursor: pointer;
+}
