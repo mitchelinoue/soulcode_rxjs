@@ -27,8 +27,8 @@
 
             <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Livro</mat-label>
-                  <mat-select name="a" [(value)]="borrow.livro">
-                        <mat-option *ngFor="let book of books" [value]="book">
+                  <mat-select name="livro" [(ngModel)]="borrow.livro.id" required>
+                        <mat-option *ngFor="let book of books" value={{book.id}}>
                           {{book.titulo}}
                         </mat-option>
                   </mat-select>
